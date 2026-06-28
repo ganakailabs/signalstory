@@ -1,4 +1,4 @@
-import { renderPlainText } from "../../core/src/index.mjs";
+import { renderPlainText } from "@signalstory/core";
 
 const escapeMarkdown = (value) =>
   String(value ?? "").replace(/([\\`*_{}\[\]()#+|>])/g, "\\$1");
@@ -22,8 +22,10 @@ const renderPartMarkdown = (part) => {
 
 export const renderPartsMarkdown = (parts = []) => parts.map(renderPartMarkdown).join("");
 
+const renderIconMarkdown = (story) => (story.icon ? `${escapeMarkdown(story.icon)} ` : "");
+
 export const renderStoryMarkdown = (story) => {
-  const lines = [renderPartsMarkdown(story.sentence ?? [])];
+  const lines = [`${renderIconMarkdown(story)}${renderPartsMarkdown(story.sentence ?? [])}`];
   if (story.rationale?.length) {
     lines.push("", `**Why it matters:** ${renderPartsMarkdown(story.rationale)}`);
   }
@@ -44,7 +46,7 @@ export const renderGithubSummary = (stories = [], options = {}) => {
   const title = options.title ?? "SignalStory summary";
   const lines = [`### ${escapeMarkdown(title)}`, ""];
   for (const story of stories) {
-    lines.push(`- ${renderPartsMarkdown(story.sentence ?? [])}`);
+    lines.push(`- ${renderIconMarkdown(story)}${renderPartsMarkdown(story.sentence ?? [])}`);
   }
   const details = stories.map(renderStoryMarkdown).join("\n\n---\n\n");
   lines.push("", "<details>", "<summary>Details</summary>", "", details || "No stories generated.", "", "</details>");

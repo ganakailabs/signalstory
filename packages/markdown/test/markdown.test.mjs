@@ -16,7 +16,7 @@ test("renders story parts to Markdown with bold marks and evidence", () => {
     evidenceRefs: [{ label: "Critical findings", path: "critical_findings", value: 3 }],
   });
 
-  assert.match(markdown, /\*\*3 critical findings\*\* remain unresolved\./);
+  assert.match(markdown, /alert-triangle \*\*3 critical findings\*\* remain unresolved\./);
   assert.match(markdown, /Why it matters/);
   assert.match(markdown, /Prioritize remediation/);
   assert.match(markdown, /Critical findings: 3/);
@@ -27,6 +27,7 @@ test("renders a GitHub-safe details summary", () => {
     {
       id: "gate",
       severity: "high",
+      icon: "git-pull-request",
       sentence: [{ text: "Gate failed." }],
       rationale: [{ text: "Validation failed." }],
     },
@@ -34,5 +35,6 @@ test("renders a GitHub-safe details summary", () => {
 
   assert.match(markdown, /^### SignalStory summary/);
   assert.match(markdown, /<details>/);
+  assert.match(markdown, /git-pull-request Gate failed\./);
   assert.match(markdown, /<summary>Details<\/summary>/);
 });

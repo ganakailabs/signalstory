@@ -1,4 +1,4 @@
-import { renderPlainText } from "../../core/src/index.mjs";
+import { renderPlainText } from "@signalstory/core";
 
 const SEVERITY_COLOR = {
   critical: "\u001b[31m",
@@ -13,13 +13,22 @@ const BOLD = "\u001b[1m";
 
 export const renderStoryText = (story) => renderPlainText(story.sentence ?? []);
 
+const renderPartsAnsi = (parts = []) =>
+  parts
+    .map((part) => {
+      const text = typeof part === "string" ? part : String(part?.text ?? "");
+      return part?.marks?.includes("bold") ? `${BOLD}${text}${RESET}` : text;
+    })
+    .join("");
+
 export const renderStoryAnsi = (story, options = {}) => {
-  const text = renderStoryText(story);
+  const icon = story.icon && options.icons !== false ? `${story.icon} ` : "";
+  const text = `${icon}${renderPartsAnsi(story.sentence ?? [])}`;
   if (options.color === false) {
     return text;
   }
   const color = SEVERITY_COLOR[story.severity] ?? SEVERITY_COLOR.info;
-  return `${color}${BOLD}${text}${RESET}`;
+  return `${color}${text}${RESET}`;
 };
 
 export { renderPlainText };
