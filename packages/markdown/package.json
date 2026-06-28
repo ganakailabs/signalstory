@@ -1,0 +1,14 @@
+{
+  "name": "@signalstory/markdown",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Markdown and GitHub renderers for SignalStory stories.",
+  "license": "Apache-2.0",
+  "main": "src/index.mjs",
+  "exports": {
+    ".": "./src/index.mjs"
+  },
+  "dependencies": {
+    "@signalstory/core": "workspace:*"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@signalstory/core",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Core SignalStory engine, schemas, and plugin contracts.",
+  "license": "Apache-2.0",
+  "main": "src/index.mjs",
+  "exports": {
+    ".": "./src/index.mjs"
+  }
+}

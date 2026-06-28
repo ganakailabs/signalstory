@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://signalstory.dev/schemas/story.schema.json",
+  "title": "SignalStory Story",
+  "type": "object",
+  "required": ["id", "severity", "sentence"],
+  "properties": {
+    "id": { "type": "string" },
+    "key": { "type": "string" },
+    "ruleId": { "type": "string" },
+    "rulePackId": { "type": "string" },
+    "severity": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low", "info"]
+    },
+    "priority": { "type": "number" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "tone": { "type": "string" },
+    "icon": { "type": ["string", "null"] },
+    "title": { "type": ["string", "null"] },
+    "sentence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/storyPart" }
+    },
+    "rationale": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/storyPart" }
+    },
+    "action": {
+      "type": ["object", "null"],
+      "properties": {
+        "label": { "type": "string" },
+        "href": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "path"],
+        "properties": {
+          "label": { "type": "string" },
+          "path": { "type": "string" },
+          "value": {}
+        },
+        "additionalProperties": true
+      }
+    },
+    "metadata": { "type": "object", "additionalProperties": true }
+  },
+  "$defs": {
+    "storyPart": {
+      "type": "object",
+      "required": ["text"],
+      "properties": {
+        "text": { "type": "string" },
+        "marks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["bold", "code", "link", "muted", "risk", "positive", "metric"]
+          }
+        },
+        "tone": { "type": "string" },
+        "href": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

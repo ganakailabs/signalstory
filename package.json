@@ -1,0 +1,17 @@
+{
+  "name": "signalstory",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Composable signal-to-story generation for evidence-grounded product, ops, and review narratives.",
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "node --test packages/core/test/*.test.mjs packages/markdown/test/*.test.mjs packages/ansi/test/*.test.mjs"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  }
+}

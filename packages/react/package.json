@@ -1,0 +1,17 @@
+{
+  "name": "@signalstory/react",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "React render helpers for SignalStory stories.",
+  "license": "Apache-2.0",
+  "main": "src/index.mjs",
+  "exports": {
+    ".": "./src/index.mjs"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "dependencies": {
+    "@signalstory/core": "workspace:*"
+  }
+}
