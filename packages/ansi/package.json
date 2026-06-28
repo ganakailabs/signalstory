@@ -5,10 +5,14 @@
   "description": "Plain text and ANSI renderers for SignalStory stories.",
   "license": "Apache-2.0",
   "main": "src/index.mjs",
+  "types": "src/index.d.ts",
   "exports": {
-    ".": "./src/index.mjs"
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.mjs"
+    }
   },
   "dependencies": {
-    "@signalstory/core": "workspace:*"
+    "@signalstory/core": "0.1.0"
   }
 }

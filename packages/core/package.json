@@ -5,7 +5,11 @@
   "description": "Core SignalStory engine, schemas, and plugin contracts.",
   "license": "Apache-2.0",
   "main": "src/index.mjs",
+  "types": "src/index.d.ts",
   "exports": {
-    ".": "./src/index.mjs"
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.mjs"
+    }
   }
 }
