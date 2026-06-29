@@ -1,4 +1,4 @@
-import { renderPlainText } from "@signalstory/core";
+import { renderPlainText } from "../../core/src/index.mjs";
 
 const escapeMarkdown = (value) =>
   String(value ?? "").replace(/([\\`*_{}\[\]()#+|>])/g, "\\$1");

@@ -1,4 +1,4 @@
-import { renderPlainText } from "@signalstory/core";
+import { renderPlainText } from "../../core/src/index.mjs";
 
 const SEVERITY_COLOR = {
   critical: "\u001b[31m",

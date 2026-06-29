@@ -1,10 +1,33 @@
 {
   "name": "signalstory",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
   "description": "Composable signal-to-story generation for evidence-grounded product, ops, and review narratives.",
   "license": "Apache-2.0",
+  "main": "packages/core/src/index.mjs",
+  "types": "packages/core/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./packages/core/src/index.d.ts",
+      "default": "./packages/core/src/index.mjs"
+    },
+    "./core": {
+      "types": "./packages/core/src/index.d.ts",
+      "default": "./packages/core/src/index.mjs"
+    },
+    "./markdown": {
+      "types": "./packages/markdown/src/index.d.ts",
+      "default": "./packages/markdown/src/index.mjs"
+    },
+    "./ansi": {
+      "types": "./packages/ansi/src/index.d.ts",
+      "default": "./packages/ansi/src/index.mjs"
+    },
+    "./react": {
+      "types": "./packages/react/src/index.d.ts",
+      "default": "./packages/react/src/index.mjs"
+    }
+  },
   "scripts": {
     "test": "node --test packages/core/test/*.test.mjs packages/markdown/test/*.test.mjs packages/ansi/test/*.test.mjs"
   },
