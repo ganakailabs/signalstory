@@ -9,18 +9,22 @@
   "exports": {
     ".": {
       "types": "./packages/core/src/index.d.ts",
+      "require": "./packages/core/src/index.cjs",
       "default": "./packages/core/src/index.mjs"
     },
     "./core": {
       "types": "./packages/core/src/index.d.ts",
+      "require": "./packages/core/src/index.cjs",
       "default": "./packages/core/src/index.mjs"
     },
     "./markdown": {
       "types": "./packages/markdown/src/index.d.ts",
+      "require": "./packages/markdown/src/index.cjs",
       "default": "./packages/markdown/src/index.mjs"
     },
     "./ansi": {
       "types": "./packages/ansi/src/index.d.ts",
+      "require": "./packages/ansi/src/index.cjs",
       "default": "./packages/ansi/src/index.mjs"
     },
     "./react": {
