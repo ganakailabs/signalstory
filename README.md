@@ -1,14 +1,23 @@
-# SignalStory
+<p align="center">
+  <img src="docs/assets/signalstory-icon.png" alt="SignalStory icon" width="180" />
+</p>
 
-[![Release](https://img.shields.io/badge/release-v0.1.0-111827)](https://github.com/ganakailabs/signalstory/releases/tag/v0.1.0)
-[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](https://www.apache.org/licenses/LICENSE-2.0)
-![Node](https://img.shields.io/badge/node-%3E%3D20-339933)
-![Python](https://img.shields.io/badge/python-runtime-3776ab)
-![Status](https://img.shields.io/badge/status-public%20preview-f59e0b)
+<h1 align="center">SignalStory</h1>
 
-**Turn structured signals into evidence-backed stories** for **React**,
-**Markdown**, **CLI output**, **GitHub comments**, **backend reports**, and
-**AI/agent workflows**.
+<p align="center">
+  <a href="https://github.com/ganakailabs/signalstory/releases/tag/v0.1.0"><img src="https://img.shields.io/badge/release-v0.1.0-111827" alt="Release v0.1.0" /></a>
+  <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="Apache-2.0 license" /></a>
+  <img src="https://img.shields.io/badge/node-%3E%3D20-339933" alt="Node >=20" />
+  <img src="https://img.shields.io/badge/python-runtime-3776ab" alt="Python runtime" />
+  <img src="https://img.shields.io/badge/status-public%20preview-f59e0b" alt="Public preview" />
+</p>
+
+<p align="center">
+  <strong>Turn structured signals into evidence-backed stories</strong> for
+  <strong>React</strong>, <strong>Markdown</strong>, <strong>CLI output</strong>,
+  <strong>GitHub comments</strong>, <strong>backend reports</strong>, and
+  <strong>AI/agent workflows</strong>.
+</p>
 
 > **One signal should not become five different explanations.**
 > SignalStory gives your product one shared story contract and lets every
