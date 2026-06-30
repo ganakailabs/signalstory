@@ -29,9 +29,22 @@ returns a portable story object that can be rendered consistently across every
 surface where your product explains what happened, why it matters, and what to
 do next.
 
-`signals` -> `rule packs` -> `portable stories` -> `React | Markdown | CLI | reports`
+```mermaid
+flowchart LR
+  Signals["signals"]
+  Rules["rule packs"]
+  Stories["portable stories"]
+  React["React"]
+  Markdown["Markdown"]
+  Cli["CLI"]
+  Reports["reports"]
 
-![SignalStory overview](docs/assets/signalstory-overview.svg)
+  Signals --> Rules --> Stories
+  Stories --> React
+  Stories --> Markdown
+  Stories --> Cli
+  Stories --> Reports
+```
 
 ## The Problem
 
@@ -88,7 +101,7 @@ flowchart TD
   telemetry, or optional AI rewrite steps.
 - **Domain neutral:** you bring the vocabulary, rules, icons, and tone.
 
-## Screenshots
+## Rendered Examples
 
 These examples all come from the same kind of story contract. Only the renderer
 changes.
@@ -98,28 +111,79 @@ changes.
 **Product UI** can show concise insight cards with icons, severity, rationale,
 evidence, and actions.
 
-![React renderer screenshot](docs/assets/react-renderer.svg)
+```mermaid
+flowchart TB
+  Card["Insight card"]
+  Header["Alert triangle | High severity"]
+  Sentence["Failure rate is 7.3%, above the expected threshold."]
+  Why["Why it matters: Recent evidence shows elevated user-visible failures."]
+  Evidence["Evidence: Failure rate = 7.3%"]
+  Action["Action: Review the latest failing checks."]
+
+  Card --> Header
+  Card --> Sentence
+  Card --> Why
+  Card --> Evidence
+  Card --> Action
+```
 
 ### CLI
 
 **Terminal output** can keep the same wording while using ANSI emphasis and
 shell-friendly formatting.
 
-![CLI renderer screenshot](docs/assets/cli-renderer.svg)
+```text
+$ signalstory render --format ansi
+
+Alert triangle Failure rate is 7.3%, above the expected threshold.
+
+Why it matters
+Recent evidence shows elevated user-visible failures.
+
+Evidence
+- Failure rate: 7.3%
+
+Recommended action
+Review the latest failing checks.
+```
+
+In a terminal, `Failure rate` and `7.3%` can be rendered with ANSI bold styling.
 
 ### Markdown / GitHub
 
 **Markdown output** can be pasted into GitHub comments, issue summaries, release
 notes, or review workflows.
 
-![Markdown renderer screenshot](docs/assets/markdown-renderer.svg)
+```md
+Alert triangle **Failure rate** is **7.3%**, above the expected threshold.
+
+**Why it matters:** Recent evidence shows elevated user-visible failures.
+
+**Recommended action:** Review the latest failing checks.
+
+**Evidence:**
+- Failure rate: 7.3%
+```
 
 ### Backend Report / PDF
 
 **Backend report generation** can use the Python runtime to keep PDFs and
 scheduled reports aligned with the rest of the product.
 
-![Backend report renderer screenshot](docs/assets/report-renderer.svg)
+```mermaid
+flowchart LR
+  Backend["Backend job"]
+  Python["Python SignalStory runtime"]
+  Contract["Portable story contract"]
+  Pdf["PDF report"]
+  Email["Scheduled summary"]
+  Archive["Evidence archive"]
+
+  Backend --> Python --> Contract
+  Contract --> Pdf
+  Contract --> Email
+  Contract --> Archive
+```
 
 ## Install
 
