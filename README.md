@@ -314,16 +314,47 @@ This repository currently contains:
 
 ## Plugins
 
-Plugins can transform generated stories after deterministic rule evaluation.
+Plugins are the extension layer around the deterministic rule engine. They let a
+host application adapt generated stories without forking the core library or
+duplicating story logic in every renderer.
+
+The current plugin hook is:
+
+- **`afterGenerate(stories, context)`:** receives the ranked, deduped stories and
+  the generation context. Return a new story array to enrich, filter, localize,
+  group, annotate, or rewrite stories before rendering.
+
+Use plugins when the extension depends on the host product or runtime:
+
+- **Enrichment:** add links, owner metadata, workflow IDs, or report section
+  names.
+- **Filtering:** hide stories that do not apply to a specific surface or user
+  role.
+- **Localization and tone:** swap copy, labels, or action text for a locale or
+  audience.
+- **Renderer hints:** add icon names, badges, grouping keys, or display metadata.
+- **AI rewrite steps:** optionally rewrite deterministic stories while preserving
+  evidence references and testable inputs.
+
+### Example: Add Report Links And Badges
 
 ```js
-const addMetadata = {
+const reportPresentationPlugin = {
+  id: "report-presentation",
   afterGenerate(stories, context) {
     return stories.map((story) => ({
       ...story,
+      icon: story.icon ?? "sparkles",
+      title: story.title ?? "Important signal",
+      action: {
+        ...story.action,
+        href: `/reports/${context.metadata?.reportId}#${story.id}`,
+      },
       metadata: {
         ...story.metadata,
-        generatedFor: context.metadata?.surface,
+        surface: context.metadata?.surface,
+        badge: story.severity === "high" ? "Needs review" : "Informational",
+        section: "Executive summary",
       },
     }));
   },
@@ -331,13 +362,47 @@ const addMetadata = {
 
 const engine = createSignalStoryEngine({
   rulePacks: [rulePack],
-  plugins: [addMetadata],
+  plugins: [reportPresentationPlugin],
+});
+
+const stories = engine.generate({
+  signals,
+  metadata: {
+    reportId: "weekly-risk-report",
+    surface: "pdf",
+  },
 });
 ```
 
-Use plugins for **host-specific enrichment**, **filtering**, **localization**,
-**telemetry**, or **AI rewrite steps**. Keep the base rule output deterministic
-when you need repeatable reports or tests.
+The rule pack still owns the meaning of the signal. The plugin only adds
+presentation and host context:
+
+```json
+{
+  "icon": "sparkles",
+  "action": {
+    "label": "Review the latest failing checks.",
+    "href": "/reports/weekly-risk-report#high-failure-rate"
+  },
+  "metadata": {
+    "surface": "pdf",
+    "badge": "Needs review",
+    "section": "Executive summary"
+  }
+}
+```
+
+### Plugin Guidelines
+
+- Keep rule packs responsible for **truth**: when a story appears, severity,
+  evidence, and recommended action.
+- Keep plugins responsible for **adaptation**: links, badges, grouping,
+  localization, formatting hints, or optional rewrites.
+- Return a new array instead of mutating stories in place when possible.
+- Preserve `id`, `ruleId`, `rulePackId`, `evidenceRefs`, and `sentence` unless
+  the plugin explicitly owns that transformation.
+- Use metadata for app-specific fields so the portable story contract remains
+  stable.
 
 ## Design Principles
 

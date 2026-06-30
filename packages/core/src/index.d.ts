@@ -39,11 +39,19 @@ export type SignalStoryRulePack = {
   rules: Array<Record<string, unknown>>;
 };
 
+export type SignalStoryPlugin = {
+  id?: string;
+  afterGenerate?: (
+    stories: SignalStoryStory[],
+    context: Record<string, unknown>,
+  ) => SignalStoryStory[] | void;
+};
+
 export declare const renderPlainText: (parts?: SignalStoryPart[] | string[]) => string;
 
 export declare const createSignalStoryEngine: (config?: {
   rulePacks?: SignalStoryRulePack[];
-  plugins?: unknown[];
+  plugins?: SignalStoryPlugin[];
 }) => {
   generate: (payload?: Record<string, unknown>) => SignalStoryStory[];
 };
