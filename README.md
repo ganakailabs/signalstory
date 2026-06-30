@@ -190,7 +190,7 @@ console.log(renderStoryAnsi(stories[0], { color: false }));
 Expected Markdown:
 
 ```md
-alert-triangle **Failure rate** is **7.3%**, above the expected threshold.
+Alert triangle **Failure rate** is **7.3%**, above the expected threshold.
 
 **Why it matters:** Recent evidence shows elevated user-visible failures.
 
@@ -203,7 +203,7 @@ alert-triangle **Failure rate** is **7.3%**, above the expected threshold.
 Expected terminal output:
 
 ```text
-alert-triangle Failure rate is 7.3%, above the expected threshold.
+Alert triangle Failure rate is 7.3%, above the expected threshold.
 ```
 
 In a terminal, `Failure rate` and `7.3%` are rendered with ANSI bold styling.

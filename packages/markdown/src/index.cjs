@@ -3,6 +3,13 @@ const { renderPlainText } = require("../../core/src/index.cjs");
 const escapeMarkdown = (value) =>
   String(value ?? "").replace(/([\\`*_{}\[\]()#+|>])/g, "\\$1");
 
+const formatIconLabel = (icon) =>
+  String(icon ?? "")
+    .replace(/[-_]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/^./, (letter) => letter.toUpperCase());
+
 const renderPartMarkdown = (part) => {
   if (typeof part === "string") {
     return escapeMarkdown(part);
@@ -22,10 +29,16 @@ const renderPartMarkdown = (part) => {
 
 const renderPartsMarkdown = (parts = []) => parts.map(renderPartMarkdown).join("");
 
-const renderIconMarkdown = (story) => (story.icon ? `${escapeMarkdown(story.icon)} ` : "");
+const renderIconMarkdown = (story, options = {}) => {
+  if (!story.icon || options.icons === false) {
+    return "";
+  }
+  const iconLabel = options.iconLabels?.[story.icon] ?? formatIconLabel(story.icon);
+  return iconLabel ? `${escapeMarkdown(iconLabel)} ` : "";
+};
 
-const renderStoryMarkdown = (story) => {
-  const lines = [`${renderIconMarkdown(story)}${renderPartsMarkdown(story.sentence ?? [])}`];
+const renderStoryMarkdown = (story, options = {}) => {
+  const lines = [`${renderIconMarkdown(story, options)}${renderPartsMarkdown(story.sentence ?? [])}`];
   if (story.rationale?.length) {
     lines.push("", `**Why it matters:** ${renderPartsMarkdown(story.rationale)}`);
   }
@@ -46,14 +59,15 @@ const renderGithubSummary = (stories = [], options = {}) => {
   const title = options.title ?? "SignalStory summary";
   const lines = [`### ${escapeMarkdown(title)}`, ""];
   for (const story of stories) {
-    lines.push(`- ${renderIconMarkdown(story)}${renderPartsMarkdown(story.sentence ?? [])}`);
+    lines.push(`- ${renderIconMarkdown(story, options)}${renderPartsMarkdown(story.sentence ?? [])}`);
   }
-  const details = stories.map(renderStoryMarkdown).join("\n\n---\n\n");
+  const details = stories.map((story) => renderStoryMarkdown(story, options)).join("\n\n---\n\n");
   lines.push("", "<details>", "<summary>Details</summary>", "", details || "No stories generated.", "", "</details>");
   return lines.join("\n");
 };
 
 module.exports = {
+  formatIconLabel,
   renderGithubSummary,
   renderPartsMarkdown,
   renderPlainText,

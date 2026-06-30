@@ -26,7 +26,22 @@ test("renders ANSI output when color is enabled", () => {
   );
 
   assert.match(text, /\u001b\[/);
-  assert.match(text, /coins /);
+  assert.match(text, /Coins /);
   assert.match(text, /\u001b\[1mSavings/);
-  assert.equal(stripAnsi(text), "coins Savings are available.");
+  assert.equal(stripAnsi(text), "Coins Savings are available.");
+});
+
+test("supports custom icon labels and hidden icons", () => {
+  const story = {
+    id: "cost",
+    severity: "high",
+    icon: "alert-triangle",
+    sentence: [{ text: "Risk increased." }],
+  };
+
+  assert.equal(
+    renderStoryAnsi(story, { color: false, iconLabels: { "alert-triangle": "Warning" } }),
+    "Warning Risk increased."
+  );
+  assert.equal(renderStoryAnsi(story, { color: false, icons: false }), "Risk increased.");
 });

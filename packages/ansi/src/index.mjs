@@ -13,6 +13,13 @@ const BOLD = "\u001b[1m";
 
 export const renderStoryText = (story) => renderPlainText(story.sentence ?? []);
 
+export const formatIconLabel = (icon) =>
+  String(icon ?? "")
+    .replace(/[-_]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/^./, (letter) => letter.toUpperCase());
+
 const renderPartsAnsi = (parts = []) =>
   parts
     .map((part) => {
@@ -22,7 +29,11 @@ const renderPartsAnsi = (parts = []) =>
     .join("");
 
 export const renderStoryAnsi = (story, options = {}) => {
-  const icon = story.icon && options.icons !== false ? `${story.icon} ` : "";
+  const iconLabel =
+    story.icon && options.icons !== false
+      ? options.iconLabels?.[story.icon] ?? formatIconLabel(story.icon)
+      : "";
+  const icon = iconLabel ? `${iconLabel} ` : "";
   const text = `${icon}${renderPartsAnsi(story.sentence ?? [])}`;
   if (options.color === false) {
     return text;

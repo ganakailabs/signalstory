@@ -16,7 +16,7 @@ test("renders story parts to Markdown with bold marks and evidence", () => {
     evidenceRefs: [{ label: "Critical findings", path: "critical_findings", value: 3 }],
   });
 
-  assert.match(markdown, /alert-triangle \*\*3 critical findings\*\* remain unresolved\./);
+  assert.match(markdown, /Alert triangle \*\*3 critical findings\*\* remain unresolved\./);
   assert.match(markdown, /Why it matters/);
   assert.match(markdown, /Prioritize remediation/);
   assert.match(markdown, /Critical findings: 3/);
@@ -35,6 +35,18 @@ test("renders a GitHub-safe details summary", () => {
 
   assert.match(markdown, /^### SignalStory summary/);
   assert.match(markdown, /<details>/);
-  assert.match(markdown, /git-pull-request Gate failed\./);
+  assert.match(markdown, /Git pull request Gate failed\./);
   assert.match(markdown, /<summary>Details<\/summary>/);
+});
+
+test("supports custom icon labels and hidden icons", () => {
+  const story = {
+    id: "gate",
+    severity: "high",
+    icon: "alert-triangle",
+    sentence: [{ text: "Gate failed." }],
+  };
+
+  assert.match(renderStoryMarkdown(story, { iconLabels: { "alert-triangle": "Warning" } }), /^Warning Gate failed\./);
+  assert.match(renderStoryMarkdown(story, { icons: false }), /^Gate failed\./);
 });

@@ -7,7 +7,7 @@
   <circle cx="94" cy="64" r="7" fill="#f59e0b"/>
   <circle cx="118" cy="64" r="7" fill="#22c55e"/>
   <text x="70" y="116" font-family="Menlo, Consolas, monospace" font-size="16" fill="#94a3b8">$ signalstory render --format ansi</text>
-  <text x="70" y="168" font-family="Menlo, Consolas, monospace" font-size="20" fill="#fbbf24">alert-triangle <tspan font-weight="700" fill="#ffffff">Failure rate</tspan><tspan fill="#e5e7eb"> is </tspan><tspan font-weight="700" fill="#ffffff">7.3%</tspan><tspan fill="#e5e7eb">, above the expected threshold.</tspan></text>
+  <text x="70" y="168" font-family="Menlo, Consolas, monospace" font-size="20" fill="#fbbf24">Alert triangle <tspan font-weight="700" fill="#ffffff">Failure rate</tspan><tspan fill="#e5e7eb"> is </tspan><tspan font-weight="700" fill="#ffffff">7.3%</tspan><tspan fill="#e5e7eb">, above the expected threshold.</tspan></text>
   <text x="70" y="220" font-family="Menlo, Consolas, monospace" font-size="16" fill="#94a3b8">Why it matters</text>
   <text x="70" y="250" font-family="Menlo, Consolas, monospace" font-size="16" fill="#cbd5e1">Recent evidence shows elevated user-visible failures.</text>
   <text x="70" y="306" font-family="Menlo, Consolas, monospace" font-size="16" fill="#94a3b8">Evidence</text>
