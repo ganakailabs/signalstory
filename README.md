@@ -90,6 +90,25 @@ console.log(renderStoryMarkdown(stories[0]));
 console.log(renderStoryAnsi(stories[0], { color: false }));
 ```
 
+Expected output:
+
+```md
+alert-triangle **Failure rate** is **7.3%**, above the expected threshold.
+
+**Why it matters:** Recent evidence shows elevated user-visible failures.
+
+**Recommended action:** Review the latest failing checks.
+
+**Evidence:**
+- Failure rate: 7.3%
+```
+
+```text
+alert-triangle Failure rate is 7.3%, above the expected threshold.
+```
+
+In a terminal, `Failure rate` and `7.3%` are rendered with ANSI bold styling.
+
 Python:
 
 ```python
@@ -124,6 +143,12 @@ stories = engine.generate({
 })
 
 print(render_plain_text(stories[0]["sentence"]))
+```
+
+Expected output:
+
+```text
+Failure rate is 7.3%, above the expected threshold.
 ```
 
 ## Story Model
