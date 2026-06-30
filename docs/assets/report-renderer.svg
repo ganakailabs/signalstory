@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="500" viewBox="0 0 980 500" role="img" aria-labelledby="title desc">
+  <title id="title">Backend report renderer example</title>
+  <desc id="desc">A report page with SignalStory rows rendered into a PDF-like layout.</desc>
+  <rect width="980" height="500" rx="18" fill="#eef2f7"/>
+  <rect x="156" y="34" width="668" height="432" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="202" y="92" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700" fill="#111827">Operational Report</text>
+  <text x="202" y="124" font-family="Inter, Arial, sans-serif" font-size="14" fill="#64748b">Generated narrative from structured evidence</text>
+  <line x1="202" y1="154" x2="778" y2="154" stroke="#e2e8f0"/>
+  <text x="202" y="196" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#111827">Key signals</text>
+  <rect x="202" y="220" width="576" height="68" rx="10" fill="#fff7ed" stroke="#fed7aa"/>
+  <text x="226" y="250" font-family="Inter, Arial, sans-serif" font-size="15" fill="#111827"><tspan font-weight="700">Failure rate</tspan><tspan> is </tspan><tspan font-weight="700">7.3%</tspan><tspan>, above the expected threshold.</tspan></text>
+  <text x="226" y="274" font-family="Inter, Arial, sans-serif" font-size="12" fill="#9a3412">Evidence: Failure rate = 7.3%</text>
+  <rect x="202" y="310" width="576" height="68" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="226" y="340" font-family="Inter, Arial, sans-serif" font-size="15" fill="#111827"><tspan font-weight="700">Queue depth</tspan><tspan> returned to normal after retry processing.</tspan></text>
+  <text x="226" y="364" font-family="Inter, Arial, sans-serif" font-size="12" fill="#475569">Evidence: Queue depth = 14</text>
+  <text x="202" y="420" font-family="Inter, Arial, sans-serif" font-size="12" fill="#94a3b8">Same story model, report-specific renderer.</text>
+</svg>

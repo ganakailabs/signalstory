@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="500" viewBox="0 0 980 500" role="img" aria-labelledby="title desc">
+  <title id="title">React renderer example</title>
+  <desc id="desc">A React card showing a SignalStory insight with icon, bold text, rationale, action, and evidence.</desc>
+  <rect width="980" height="500" rx="18" fill="#f8fafc"/>
+  <rect x="36" y="34" width="908" height="432" rx="16" fill="#ffffff" stroke="#d9e2ec"/>
+  <text x="70" y="82" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" fill="#111827">React insight card</text>
+  <text x="70" y="112" font-family="Inter, Arial, sans-serif" font-size="15" fill="#64748b">Rendered from the same portable story object.</text>
+  <rect x="70" y="150" width="840" height="230" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+  <circle cx="112" cy="196" r="18" fill="#fef2f2" stroke="#fecaca"/>
+  <path d="M112 185 L124 207 H100 Z" fill="#dc2626"/>
+  <rect x="144" y="178" width="72" height="24" rx="12" fill="#fee2e2"/>
+  <text x="160" y="195" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#991b1b">HIGH</text>
+  <text x="144" y="235" font-family="Inter, Arial, sans-serif" font-size="22" fill="#111827">
+    <tspan font-weight="700">Failure rate</tspan><tspan> is </tspan><tspan font-weight="700">7.3%</tspan><tspan>, above the expected threshold.</tspan>
+  </text>
+  <text x="144" y="276" font-family="Inter, Arial, sans-serif" font-size="15" fill="#475569">
+    <tspan font-weight="700">Why it matters:</tspan><tspan> Recent evidence shows elevated user-visible failures.</tspan>
+  </text>
+  <rect x="144" y="306" width="232" height="38" rx="8" fill="#111827"/>
+  <text x="164" y="331" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Review latest failing checks</text>
+  <rect x="640" y="176" width="224" height="70" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="662" y="204" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" fill="#334155">Evidence</text>
+  <text x="662" y="228" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#0f172a">7.3%</text>
+</svg>

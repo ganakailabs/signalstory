@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="440" viewBox="0 0 1100 440" role="img" aria-labelledby="title desc">
+  <title id="title">SignalStory overview</title>
+  <desc id="desc">Signals flow through rule packs into one story contract that renders to React, Markdown, CLI, and backend reports.</desc>
+  <rect width="1100" height="440" rx="20" fill="#f8fafc"/>
+  <rect x="28" y="28" width="1044" height="384" rx="16" fill="#ffffff" stroke="#d9e2ec"/>
+  <text x="58" y="76" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#111827">One story contract, every surface</text>
+  <text x="58" y="106" font-family="Inter, Arial, sans-serif" font-size="16" fill="#52606d">Turn evidence and metrics into consistent human-readable stories.</text>
+
+  <rect x="58" y="162" width="210" height="128" rx="12" fill="#eef2ff" stroke="#c7d2fe"/>
+  <text x="82" y="198" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#1f2937">Signals</text>
+  <text x="82" y="228" font-family="Inter, Arial, sans-serif" font-size="14" fill="#4b5563">metrics</text>
+  <text x="82" y="252" font-family="Inter, Arial, sans-serif" font-size="14" fill="#4b5563">checks</text>
+  <text x="82" y="276" font-family="Inter, Arial, sans-serif" font-size="14" fill="#4b5563">evidence</text>
+
+  <path d="M286 226 H366" stroke="#94a3b8" stroke-width="3" fill="none"/>
+  <path d="M366 226 l-12 -7 v14 z" fill="#94a3b8"/>
+
+  <rect x="390" y="132" width="300" height="188" rx="14" fill="#111827"/>
+  <text x="420" y="174" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff">SignalStory core</text>
+  <text x="420" y="206" font-family="Inter, Arial, sans-serif" font-size="14" fill="#cbd5e1">rule packs</text>
+  <text x="420" y="232" font-family="Inter, Arial, sans-serif" font-size="14" fill="#cbd5e1">ranking and dedupe</text>
+  <text x="420" y="258" font-family="Inter, Arial, sans-serif" font-size="14" fill="#cbd5e1">portable story object</text>
+  <text x="420" y="284" font-family="Inter, Arial, sans-serif" font-size="14" fill="#cbd5e1">plugins</text>
+
+  <path d="M708 226 H788" stroke="#94a3b8" stroke-width="3" fill="none"/>
+  <path d="M788 226 l-12 -7 v14 z" fill="#94a3b8"/>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <rect x="812" y="102" width="210" height="54" rx="10" fill="#ecfeff" stroke="#a5f3fc"/>
+    <text x="836" y="136" font-size="15" font-weight="700" fill="#155e75">React UI</text>
+    <rect x="812" y="172" width="210" height="54" rx="10" fill="#f0fdf4" stroke="#bbf7d0"/>
+    <text x="836" y="206" font-size="15" font-weight="700" fill="#166534">Markdown / GitHub</text>
+    <rect x="812" y="242" width="210" height="54" rx="10" fill="#fff7ed" stroke="#fed7aa"/>
+    <text x="836" y="276" font-size="15" font-weight="700" fill="#9a3412">CLI / ANSI</text>
+    <rect x="812" y="312" width="210" height="54" rx="10" fill="#fdf2f8" stroke="#fbcfe8"/>
+    <text x="836" y="346" font-size="15" font-weight="700" fill="#9d174d">Reports / PDFs</text>
+  </g>
+</svg>

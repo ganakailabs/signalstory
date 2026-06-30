@@ -1,28 +1,82 @@
 # SignalStory
 
-SignalStory turns structured signals and evidence into concise, human-readable
-stories that can be rendered consistently in web apps, PDFs, CLIs, GitHub
-comments, and agent workflows.
+Turn structured signals into evidence-backed stories for React, Markdown,
+CLI output, GitHub comments, backend reports, and AI/agent workflows.
 
-It is designed for product and engineering teams that already have facts,
-metrics, findings, checks, or evidence, and want one shared way to turn those
-signals into useful narrative text without rewriting the same prose logic in
-every surface.
+SignalStory is a small, renderer-neutral story engine. You give it facts,
+metrics, findings, scores, checks, or evidence. It applies your rule packs and
+returns a portable story object that can be rendered consistently across every
+surface where your product explains what happened, why it matters, and what to
+do next.
 
-## What It Does
+![SignalStory overview](docs/assets/signalstory-overview.svg)
 
-- Generates ranked stories from structured signals and evidence.
-- Keeps wording, severity, priority, rationale, actions, and evidence references
-  in one reusable rule contract.
-- Renders the same story contract as plain text, Markdown, ANSI terminal output,
-  React elements, or Python dictionaries for backend/report workflows.
-- Supports bold/code marks, icons, severity, confidence, and evidence links.
-- Allows host applications to provide domain-specific rule packs, render themes,
-  icon registries, and plugins.
+## The Problem
 
-SignalStory is domain-neutral. It does not ship with a cloud, security,
-finance, sales, or operations opinion. Your application owns the signals,
-rules, copy, icons, and rendering style.
+Most products eventually need to explain signals to humans:
+
+- A dashboard needs a short insight with bold emphasis and an icon.
+- A PDF report needs the same message with evidence and rationale.
+- A CLI needs terminal-safe text with ANSI styling.
+- A GitHub comment needs Markdown that is readable in pull requests.
+- A backend job or agent needs structured text that can be tested and traced.
+
+Without a shared story layer, those surfaces drift. Each one starts to own its
+own prose rules, severity ordering, dedupe behavior, icon mapping, evidence
+formatting, and "why it matters" copy. Over time, the same signal is explained
+slightly differently in every place.
+
+SignalStory fixes that by separating story generation from story rendering.
+
+```mermaid
+flowchart TD
+  Signals["Signals, metrics, checks, evidence"]
+  Rules["Your rule packs"]
+  Story["Portable SignalStory object"]
+  Web["React UI"]
+  Markdown["Markdown and GitHub"]
+  Cli["CLI / ANSI"]
+  Backend["Backend reports and PDFs"]
+
+  Signals --> Rules --> Story
+  Story --> Web
+  Story --> Markdown
+  Story --> Cli
+  Story --> Backend
+```
+
+## What SignalStory Gives You
+
+- One place to define when a story should appear.
+- One story contract for sentence, rationale, severity, priority, confidence,
+  action, icon, and evidence.
+- Deterministic ranking and dedupe across generated stories.
+- Markdown, ANSI, React, and Python runtime paths.
+- Bold/code marks and links without binding your generation logic to one UI.
+- Plugin hooks for enrichment, filtering, localization, telemetry, or optional
+  AI rewrite steps.
+- A domain-neutral core. You bring the vocabulary, rules, icons, and tone.
+
+## Screenshots
+
+These examples all come from the same kind of story contract. Only the renderer
+changes.
+
+### React
+
+![React renderer screenshot](docs/assets/react-renderer.svg)
+
+### CLI
+
+![CLI renderer screenshot](docs/assets/cli-renderer.svg)
+
+### Markdown / GitHub
+
+![Markdown renderer screenshot](docs/assets/markdown-renderer.svg)
+
+### Backend Report / PDF
+
+![Backend report renderer screenshot](docs/assets/report-renderer.svg)
 
 ## Install
 
@@ -90,7 +144,7 @@ console.log(renderStoryMarkdown(stories[0]));
 console.log(renderStoryAnsi(stories[0], { color: false }));
 ```
 
-Expected output:
+Expected Markdown:
 
 ```md
 alert-triangle **Failure rate** is **7.3%**, above the expected threshold.
@@ -103,13 +157,15 @@ alert-triangle **Failure rate** is **7.3%**, above the expected threshold.
 - Failure rate: 7.3%
 ```
 
+Expected terminal output:
+
 ```text
 alert-triangle Failure rate is 7.3%, above the expected threshold.
 ```
 
 In a terminal, `Failure rate` and `7.3%` are rendered with ANSI bold styling.
 
-Python:
+## Python Quick Start
 
 ```python
 from signalstory import SignalStoryEngine, render_plain_text
@@ -172,8 +228,10 @@ A generated story is a portable object:
     { "text": "7.3%", "marks": ["bold"] },
     { "text": ", above the expected threshold." }
   ],
-  "rationale": [],
-  "action": null,
+  "rationale": [
+    { "text": "Recent evidence shows elevated user-visible failures." }
+  ],
+  "action": { "label": "Review the latest failing checks." },
   "evidenceRefs": [
     { "label": "Failure rate", "path": "failureRateLabel", "value": "7.3%" }
   ],
@@ -186,45 +244,25 @@ The contract is intentionally small:
 - `sentence` is the primary user-facing text.
 - `rationale` explains why the signal matters.
 - `action` can point to the next step.
+- `severity`, `priority`, and `confidence` drive ranking and dedupe.
+- `icon` is a symbolic name. Your renderer decides what it looks like.
 - `evidenceRefs` keeps generated prose traceable to inputs.
 - `metadata` lets host applications carry application-specific context.
 
-## Architecture
+## Where It Fits
 
-Without a shared story layer, applications often duplicate prose, severity,
-ranking, and formatting logic per surface:
+SignalStory is useful when the same evidence needs to appear in multiple places:
 
-```mermaid
-flowchart TD
-  Signals["Signals and evidence"]
-  Signals --> WebRules["Web prose rules"]
-  Signals --> PdfRules["Report prose rules"]
-  Signals --> CliRules["CLI prose rules"]
-  Signals --> GithubRules["GitHub prose rules"]
-  WebRules --> Web["Frontend"]
-  PdfRules --> Pdf["PDF/report"]
-  CliRules --> Cli["CLI"]
-  GithubRules --> Github["GitHub"]
-```
+- Product dashboards and health pages.
+- Executive or operational PDF reports.
+- CLI review, scan, or audit output.
+- GitHub pull request comments.
+- Agent summaries and deterministic evidence blocks.
+- Monitoring, quality, security, finance, sales, support, compliance, or
+  workflow automation tools.
 
-With SignalStory, rule evaluation and story construction are shared. Each
-surface renders the same story contract:
-
-```mermaid
-flowchart TD
-  Signals["Signals and evidence"]
-  RulePacks["Rule packs and plugins"]
-  Core["SignalStory core"]
-  Signals --> RulePacks --> Core
-  Core --> Markdown["Markdown renderer"]
-  Core --> Ansi["ANSI renderer"]
-  Core --> React["React renderer"]
-  Core --> Python["Python runtime"]
-  Markdown --> Github["GitHub comments"]
-  Ansi --> Cli["CLI"]
-  React --> Web["Frontend"]
-  Python --> Reports["Backend reports and PDFs"]
-```
+It is not an LLM framework. It is the deterministic layer that can sit before
+or after AI systems when you need stable, testable, evidence-grounded text.
 
 ## Packages
 
